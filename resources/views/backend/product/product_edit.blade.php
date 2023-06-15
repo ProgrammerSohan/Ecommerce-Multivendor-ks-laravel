@@ -24,9 +24,9 @@
   <div class="card-body p-4">
 	  <h5 class="card-title">Edit Product</h5>
 	  <hr/>
-      <form id="myForm" method="post" action="{{ route('store.product') }}" enctype="multipart/form-data" >
+      <form id="myForm" method="post" action="{{ route('update.product') }}" >
         @csrf
-
+        <input type="hidden" name="id" value="{{ $products->id }}">
        <div class="form-body mt-4">
 	    <div class="row">
 		   <div class="col-lg-8">

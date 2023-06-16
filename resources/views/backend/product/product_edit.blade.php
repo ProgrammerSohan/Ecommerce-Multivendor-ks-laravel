@@ -215,6 +215,51 @@
 
 <!-- Main Image Thambnail Update ends-->
 
+<!-- update multi image -->
+<div class="page-content">
+    <h6 class="mb-0 text-uppercase">Update multi image </h6>
+
+
+<div class="card">
+    <div class="card-body">
+        <table class="table mb-0 table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#Sl</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Change Image</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <form method="post" action="{{route('update.product.thambnail')}}" enctype="multipart/form-data">
+                    @csrf
+
+          @foreach ($multiImgs as $key => $img)
+
+                <tr>
+                    <th scope="row">{{ $key+1 }}</th>
+                    <td> <img src="{{ asset($img->photo_name)}}" style="width:70px; height: 40px;" alt=""></td>
+                    <td> <input type="file" class="form-group" name="multi_img[{{ $img->id }}]"></td>
+                    <td>
+                        <input type="submit" class="btn btn-primary px-4" value="Update Image"/>
+                        <a href="" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+
+                @endforeach
+
+                </form>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</div>
+<!-- update multi image ends-->
+
 
 <script type="text/javascript">
     $(document).ready(function (){

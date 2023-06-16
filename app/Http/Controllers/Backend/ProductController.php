@@ -145,11 +145,12 @@ class ProductController extends Controller
        );
 
        return redirect()->route('all.product')->with($notification);
+        }// end method
+
+        public function UpdateProductThambnail(){
 
 
-
-
-        }
+        }// end method
 
 
 }

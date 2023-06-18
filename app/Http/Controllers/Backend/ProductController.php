@@ -209,6 +209,23 @@ class ProductController extends Controller
             return redirect()->back()->with($notification);
         }//end method
 
+        public function MultiImageDelete($id){
+
+            $oldImg = MultiImg::findOrFail($id);
+            unlink($oldImg->photo_name);
+
+            MultiImg::findOrFail($id)->delete();
+
+            $notification = array(
+                'message'=> 'Product Multi Image Deleted Successfully',
+                'alert-type' => 'success'
+
+            );
+
+            return redirect()->back()->with($notification);
+
+        }// end method
+
 
 
 }

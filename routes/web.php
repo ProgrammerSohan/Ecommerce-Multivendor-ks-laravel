@@ -25,9 +25,12 @@ use App\Http\Controllers\Backend\VendorProductController;
 |
 */
 
+/*
 Route::get('/', function () {
     return view('frontend.index');
 });
+*/
+Route::get('/',[IndexController::class,'Index']);
 
 //user
 Route::middleware(['auth'])->group(function(){

@@ -212,5 +212,6 @@ Route::controller(CategoryController::class)->group(function(){
 
 //frontend product details all route
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
 
 

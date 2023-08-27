@@ -6,7 +6,7 @@
 
     <div class="section-title wow animate__animated animate__fadeIn" data-wow-delay="0">
                 <h3 class="">All Our Vendor List </h3>
-                <a class="show-all" href="shop-grid-right.html">
+                <a class="show-all" href="{{ route('vendor.all') }}">
                     All Vendors
                     <i class="fi-rs-angle-right"></i>
                 </a>
@@ -22,7 +22,7 @@
                             <div class="vendor-img">
                                 <a href="vendor-details-1.html">
 
-             <img class="default-img" src="{{(!empty($vendor->photo)) ? url('upload/vendor_images/'.$vendor->photo):url('upload/no_image.jpg')}}" style="width:120px;height:120px;" alt="" />
+     <img class="default-img" src="{{(!empty($vendor->photo)) ? url('upload/vendor_images/'.$vendor->photo):url('upload/no_image.jpg')}}" style="width:120px;height:120px;" alt="" />
                                 </a>
                             </div>
                             <div class="product-badges product-badges-position product-badges-mrg">
@@ -35,7 +35,7 @@
                                     <div class="product-category">
                                         <span class="text-muted">Since {{ $vendor->vendor_join}}</span>
                                     </div>
-                                    <h4 class="mb-5"><a href="{{ route('vendor.details',$vendor->id)}}">{{ $vendor->name}}</a></h4>
+           <h4 class="mb-5"><a href="{{ route('vendor.details',$vendor->id)}}">{{ $vendor->name}}</a></h4>
                                     <div class="product-rate-cover">
 
                                         @php

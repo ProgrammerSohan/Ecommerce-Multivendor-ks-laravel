@@ -74,9 +74,10 @@ class IndexController extends Controller
    public function CatWiseProduct(Request $request,$id,$slug){
         $products = Product::where('status',1)->where('category_id',$id)->orderBy('id','DESC')->get();
         $categories = Category::orderBy('category_name','ASC')->get();
+        $breadcat = Category::where('id',$id)->first();
 
        // return view('frontend.category.cat_wise_product',compact('products','categories'));
-       return view('frontend.product.category_view', compact('products','categories'));
+       return view('frontend.product.category_view', compact('products','categories', 'breadcat'));
 
    }//end method
 

@@ -219,3 +219,6 @@ Route::get('/product/category/{id}/{slug}',[IndexController::class, 'CatWiseProd
 
 Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
 
+//// Product View Modal With Ajax
+Route::get('/product/view/modal/{id}',[IndexController::class, 'ProductViewAjax']);
+

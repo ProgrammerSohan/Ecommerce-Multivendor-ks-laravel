@@ -223,3 +223,14 @@ Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatW
 //// Product View Modal With Ajax
 Route::get('/product/view/modal/{id}',[IndexController::class, 'ProductViewAjax']);
 
+//add to cart store data
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+
+
+
+
+
+
+
+
+

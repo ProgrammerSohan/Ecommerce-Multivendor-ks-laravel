@@ -50,5 +50,24 @@ class CartController extends Controller
 
     }//end method
 
+    public function AddMiniCart(){
+        $carts = Cart::content();
+        $cartQty = Cart::count();
+        $cartTotal = Cart::total();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartQty' => $cartQty,
+            'cartTotal' => $cartTotal
+
+        ));
+
+
+    }//end method
+
+
+
+
+
 //Programmer Sohan
 }

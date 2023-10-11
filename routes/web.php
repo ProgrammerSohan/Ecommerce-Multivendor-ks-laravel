@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\User\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -234,6 +235,7 @@ Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMi
 /// Add to cart store data For Product Details Page 
 Route::post('/dcart/data/store/{id}',[CartController::class, 'AddToCartDetails']);
 
-
+//add to wishlist
+Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
 
 

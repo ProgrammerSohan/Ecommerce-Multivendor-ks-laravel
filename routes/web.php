@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\WishlistController;
 
 /*
@@ -237,6 +238,9 @@ Route::post('/dcart/data/store/{id}',[CartController::class, 'AddToCartDetails']
 
 //add to wishlist
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
+//Add to compare
+Route::post('/add-to-compare/{product_id}',[CompareController::class,'AddToCompare']);
+
 
 //User All Route
 

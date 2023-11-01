@@ -40,5 +40,15 @@ class CompareController extends Controller
 
     } // end method
 
+    public function GetCompareProduct(){
+
+        $compare = Compare::with('product')->where('user_id',Auth::id())->latest()->get();
+
+        //$wishQty = wishlist::count();
+       // return response()->json(['wishlist'=>$wishlist, 'wishQty'=>$wishQty]);
+       return response()->json($compare);
+
+    }//end method
+
 
 }

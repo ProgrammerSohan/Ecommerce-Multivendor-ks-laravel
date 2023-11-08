@@ -138,87 +138,101 @@
                                 </div>
                                 @endif
                                 <div class="add-cart">
-       <a class="add" href="{{url('product/details/'.$product->id.'/'.$product->product_slug')}}"><i class="fi-rs-shopping-cart mr-5"></i>Details </a>
+                                    <a class="add" href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><i class="fi-rs-shopping-cart mr-5"></i>Details </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
                 <!--end product card-->
                 @endforeach
-
-                <!--end product card-->
-
-            </div>
-            <!--product grid-->
-            <div class="pagination-area mt-20 mb-20">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-start">
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#">6</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-            <!--End Deals-->
-
-
-        </div>
-        <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
-            <div class="sidebar-widget widget-category-2 mb-30">
-                <h5 class="section-title style-1 mb-30">Category</h5>
-                <ul>
-                    @foreach ( $categories as $category)
-
-                    @php
-                        $products = App\Models\Product::where('category_id',$category->id)->get();
-                    @endphp
-
+            
+            
+            
+            
+                                   
+                                    
+                                </div>
+                                <!--product grid-->
+                                <div class="pagination-area mt-20 mb-20">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-start">
+                                            <li class="page-item">
+                                                <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link dot" href="#">...</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                
+                                <!--End Deals-->
+            
+                                
+                            </div>
+                            <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
+                                <div class="sidebar-widget widget-category-2 mb-30">
+                                    <h5 class="section-title style-1 mb-30">Category</h5>
+                                    <ul>
+            
+                    @foreach($categories as $category)
+            
+            @php
+            
+            $products = App\Models\Product::where('category_id',$category->id)->get();
+            
+            @endphp
+            
+            
                     <li>
-         <a href="shop-grid-right.html"> <img src="{{ asset($category->category_image) }}" alt="" />{{$category->category_name}}</a><span class="count">{{count($products)}}</span>
+                        <a href="shop-grid-right.html"> <img src=" {{ asset($category->category_image) }} " alt="" />{{ $category->category_name }}</a><span class="count">{{ count($products) }}</span>
                     </li>
-                    @endforeach
-                </ul>
-            </div>
-            <!-- Fillter By Price -->
-
-            <!-- Product sidebar Widget -->
-            <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
-                <h5 class="section-title style-1 mb-30">New products</h5>
-
-                @foreach($newProduct as $product)
-                <div class="single-post clearfix">
-                    <div class="image">
-                        <img src="{{ asset( $product->product_thambnail) }}" alt="#" />
-                    </div>
-                    <div class="content pt-10">
-         <p><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $product->product_name}}</a></p>
-
-                        @if($product->discount_price == NULL)
-                        <p class="price mb-0 mt-5"> ${{ $product->selling_price}} </p>
-                        @else
-                        <p class="price mb-0 mt-5">${{ $product->discount_price}}</p>
-                        @endif
-                        <div class="product-rate">
-                            <div class="product-rating" style="width: 90%"></div>
+                    @endforeach 
+                                    </ul>
+                                </div>
+                                <!-- Fillter By Price -->
+                             
+                                <!-- Product sidebar Widget -->
+                                <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
+                                    <h5 class="section-title style-1 mb-30">New products</h5>
+                                    
+                    @foreach($newProduct as $product)
+                    <div class="single-post clearfix">
+                        <div class="image">
+                            <img src="{{ asset( $product->product_thambnail ) }}" alt="#" />
+                        </div>
+                        <div class="content pt-10">
+                            <p><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $product->product_name }}</a></p>
+            
+                               @if($product->discount_price == NULL)
+                                <p class="price mb-0 mt-5">${{ $product->selling_price }}</p>
+                               @else
+                               <p class="price mb-0 mt-5">${{ $product->discount_price }}</p>
+                               @endif
+                            
+                            <div class="product-rate">
+                                <div class="product-rating" style="width: 90%"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                    @endforeach
-
-            </div>
-
-        </div>
-    </div>
-</div>
-
-@endsection
+                  @endforeach
+            
+            
+                                   
+                                </div>
+                               
+            
+                            </div>
+                        </div>
+                    </div>
+            
+            
+            
+            
+            @endsection

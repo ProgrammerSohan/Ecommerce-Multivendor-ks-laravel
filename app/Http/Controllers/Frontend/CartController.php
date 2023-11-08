@@ -112,7 +112,13 @@ class CartController extends Controller
     public function RemoveMiniCart($rowId){
         Cart::remove($rowId);
         return response()->json(['success' => 'Product remove from cart!']);
-    }
+    }//end method
+
+    public function MyCart(){
+
+        return view('frontend.mycart.view_mycart');
+
+    }//end method
 
 
 

@@ -263,4 +263,11 @@ Route::middleware(['auth','role:user'])->group(function(){
 
     });
 
-});//end group middleware
+
+    //cart all route
+    Route::controller(CartController::class)->group(function(){
+        Route::get('/mycart', 'MyCart')->name('mycart');
+
+    });
+
+});//end group user middleware

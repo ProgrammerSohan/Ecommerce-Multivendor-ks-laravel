@@ -271,6 +271,7 @@ Route::middleware(['auth','role:user'])->group(function(){
         Route::get('/cart-remove/{rowId}','CartRemove');
 
         Route::get('/cart-decrement/{rowId}', 'CartDecrement');
+        Route::get('/cart-increment/{rowId}', 'CartIncrement');
 
     });
 

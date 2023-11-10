@@ -149,5 +149,12 @@ class CartController extends Controller
 
     }//end method
 
+   public function CartIncrement($rowId){
+      $row = Cart::get($rowId);
+      Cart::update($rowId, $row->qty +1);
+      return response()->json('Increment');
+
+   }//end method
+
 //Programmer Sohan
 }

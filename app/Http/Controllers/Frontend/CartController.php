@@ -135,6 +135,12 @@ class CartController extends Controller
 
     }//end method
 
+    public function CartRemove($rowId){
+        Cart::remove($rowId);
+        return response()->json(['success' => 'Successfully Remove From Cart']);
+
+    }//end method
+
 
 //Programmer Sohan
 }

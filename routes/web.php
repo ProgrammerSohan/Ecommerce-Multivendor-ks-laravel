@@ -4,18 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\User\CompareController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
-use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
-use App\Http\Controllers\User\CompareController;
-use App\Http\Controllers\User\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -210,6 +211,20 @@ Route::controller(CategoryController::class)->group(function(){
         Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
 
     });
+
+     //Coupon all route
+     Route::controller(CouponController::class)->group(function(){
+        Route::get('/all/coupon','AllCoupon')->name('all.coupon');
+        Route::get('/add/banner','AddBanner')->name('add.banner');
+        Route::post('/store/banner','StoreBanner')->name('store.banner');
+        Route::get('/edit/banner/{id}','EditBanner')->name('edit.banner');
+        Route::post('/update/banner', 'UpdateBanner')->name('update.banner');
+        Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
+
+    });
+
+
+
 
 });//admin end middleware
 

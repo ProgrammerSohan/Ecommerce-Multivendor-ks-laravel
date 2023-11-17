@@ -22,7 +22,7 @@ class CouponController extends Controller
      public function StoreCoupon(Request $request){
 
           Coupon::insert([
-               'coupon_name' => $request->coupon_name,
+               'coupon_name' => strtoupper($request->coupon_name),
                'coupon_discount'=> $request->coupon_discount,
                'coupon_validity' => $request->coupon_validity,
                'created_at'=>Carbon::now(),
@@ -39,6 +39,13 @@ class CouponController extends Controller
 
      }//end method
 
+        public function EditCoupon($id){
+           
+           $coupon =Coupon::findOrFail($id);
+           return view('backend.coupon.edit_coupon',compact('coupon'));
+
+
+        }//end method
 
 
 }

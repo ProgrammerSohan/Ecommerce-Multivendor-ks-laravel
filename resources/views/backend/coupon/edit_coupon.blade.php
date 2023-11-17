@@ -28,16 +28,16 @@
                     <div class="card">
                         <div class="card-body">
 
-               <form id="myForm" method="post" action="{{ route('store.coupon')}}" >
+               <form id="myForm" method="post" action="{{ route('update.coupon')}}" >
                 @csrf
-
+                        <input type="hidden" name="id" value="{{ $coupon->id}}">
 
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Coupon Name</h6>
                                 </div>
                                 <div class="form-group col-sm-9 text-secondary">
-                                    <input type="text" name="coupon_name" class="form-control">
+                       <input type="text" name="coupon_name" class="form-control" value="{{ $coupon->coupon_name}}">
 
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                     <h6 class="mb-0">Coupon Discount(%)</h6>
                                 </div>
                                 <div class="form-group col-sm-9 text-secondary">
-                          <input type="text" name="coupon_discount" class="form-control" />
+               <input type="text" name="coupon_discount" class="form-control" value="{{ $coupon->coupon_discount}}" />
                                 </div>
                             </div>
 
@@ -56,7 +56,7 @@
                                     <h6 class="mb-0">Coupon Validity Date</h6>
                                 </div>
                                 <div class="form-group col-sm-9 text-secondary">
-                          <input type="date" name="coupon_validity" class="form-control" min="{{ Carbon\Carbon::now()->format('Y-m-d') }}" />
+            <input type="date" name="coupon_validity" class="form-control" min="{{ Carbon\Carbon::now()->format('Y-m-d') }}" value="{{ $coupon->coupon_validity }}" />
                                 </div>
                             </div>
 

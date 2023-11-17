@@ -47,5 +47,26 @@ class CouponController extends Controller
 
         }//end method
 
+        public function UpdateCoupon(Request $request){
+
+               $coupon_id = $request->id;
+
+               Coupon::findOrFail($coupon_id)->update([
+                    'coupon_name' => strtoupper($request->coupon_name),
+                    'coupon_discount' => $request->coupon_discount,
+                    'coupon_validity' => $request->coupon_validity,
+                    'created_at' =>Carbon::now(),
+
+               ]);
+
+               $notification = array(
+                    'message' => 'Coupon Updated Successfully',
+                    'alert-type' => 'success'
+
+               );
+               return redirect()->route('all.coupon')->with($notification);
+
+        }//end method
+
 
 }

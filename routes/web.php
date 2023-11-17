@@ -218,7 +218,7 @@ Route::controller(CategoryController::class)->group(function(){
         Route::get('/add/coupon','AddCoupon')->name('add.coupon');
         Route::post('/store/coupon','StoreCoupon')->name('store.coupon');
         Route::get('/edit/coupon/{id}','EditCoupon')->name('edit.coupon');
-        Route::post('/update/banner', 'UpdateBanner')->name('update.banner');
+        Route::post('/update/coupon', 'UpdateCoupon')->name('update.coupon');
         Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
 
     });

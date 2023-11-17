@@ -13,5 +13,12 @@ class CouponController extends Controller
              return view('backend.coupon.coupon_all',compact('coupon'));
 
      }//end method
+
+     public function AddCoupon(){
+          return view('backend.coupon.coupon_add');
+     }//end method
     
+
+
+
 }

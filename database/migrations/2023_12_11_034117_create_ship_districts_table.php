@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ship_districts', function (Blueprint $table) {
+        Schema::create('ship_districts', function (Blueprint $table) {  
             $table->id();
             $table->unsignedBigInteger('division_id');
             $table->string('district_name');
             $table->timestamps();
-        });
+        });  
     }
 
     /**

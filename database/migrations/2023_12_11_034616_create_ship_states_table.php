@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ship_states', function (Blueprint $table) {
+        Schema::create('ship_states', function (Blueprint $table) {  
             $table->id();
             $table->unsignedBigInteger('division_id');
             $table->unsignedBigInteger('district_id');
             $table->string('state_name');
             $table->timestamps();
         });
-    }
+    }  
 
     /**
      * Reverse the migrations.

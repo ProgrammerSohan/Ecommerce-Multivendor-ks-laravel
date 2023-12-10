@@ -1,52 +1,103 @@
-ithFailedLookupLocations): void;
-    }
-    export function createModuleResolutionCache(currentDirectory: string, getCanonicalFileName: (s: string) => string, options?: CompilerOptions): ModuleResolutionCache;
-    export function createTypeReferenceDirectiveResolutionCache(currentDirectory: string, getCanonicalFileName: (s: string) => string, options?: CompilerOptions, packageJsonInfoCache?: PackageJsonInfoCache): TypeReferenceDirectiveResolutionCache;
-    export function resolveModuleNameFromCache(moduleName: string, containingFile: string, cache: ModuleResolutionCache, mode?: ModuleKind.CommonJS | ModuleKind.ESNext): ResolvedModuleWithFailedLookupLocations | undefined;
-    export function resolveModuleName(moduleName: string, containingFile: string, compilerOptions: CompilerOptions, host: ModuleResolutionHost, cache?: ModuleResolutionCache, redirectedReference?: ResolvedProjectReference, resolutionMode?: ModuleKind.CommonJS | ModuleKind.ESNext): ResolvedModuleWithFailedLookupLocations;
-    export function nodeModuleNameResolver(moduleName: string, containingFile: string, compilerOptions: CompilerOptions, host: ModuleResolutionHost, cache?: ModuleResolutionCache, redirectedReference?: ResolvedProjectReference): ResolvedModuleWithFailedLookupLocations;
-    export function classicNameResolver(moduleName: string, containingFile: string, compilerOptions: CompilerOptions, host: ModuleResolutionHost, cache?: NonRelativeModuleNameResolutionCache, redirectedReference?: ResolvedProjectReference): ResolvedModuleWithFailedLookupLocations;
-    export {};
-}
-declare namespace ts {
-    /**
-     * Visits a Node using the supplied visitor, possibly returning a new Node in its place.
-     *
-     * @param node The Node to visit.
-     * @param visitor The callback used to visit the Node.
-     * @param test A callback to execute to verify the Node is valid.
-     * @param lift An optional callback to execute to lift a NodeArray into a valid Node.
-     */
-    function visitNode<T extends Node>(node: T, visitor: Visitor | undefined, test?: (node: Node) => boolean, lift?: (node: readonly Node[]) => T): T;
-    /**
-     * Visits a Node using the supplied visitor, possibly returning a new Node in its place.
-     *
-     * @param node The Node to visit.
-     * @param visitor The callback used to visit the Node.
-     * @param test A callback to execute to verify the Node is valid.
-     * @param lift An optional callback to execute to lift a NodeArray into a valid Node.
-     */
-    function visitNode<T extends Node>(node: T | undefined, visitor: Visitor | undefined, test?: (node: Node) => boolean, lift?: (node: readonly Node[]) => T): T | undefined;
-    /**
-     * Visits a NodeArray using the supplied visitor, possibly returning a new NodeArray in its place.
-     *
-     * @param nodes The NodeArray to visit.
-     * @param visitor The callback used to visit a Node.
-     * @param test A node test to execute for each node.
-     * @param start An optional value indicating the starting offset at which to start visiting.
-     * @param count An optional value indicating the maximum number of nodes to visit.
-     */
-    function visitNodes<T extends Node>(nodes: NodeArray<T>, visitor: Visitor | undefined, test?: (node: Node) => boolean, start?: number, count?: number): NodeArray<T>;
-    /**
-     * Visits a NodeArray using the supplied visitor, possibly returning a new NodeArray in its place.
-     *
-     * @param nodes The NodeArray to visit.
-     * @param visitor The callback used to visit a Node.
-     * @param test A node test to execute for each node.
-     * @param start An optional value indicating the starting offset at which to start visiting.
-     * @param count An optional value indicating the maximum number of nodes to visit.
-     */
-    function visitNodes<T extends Node>(nodes: NodeArray<T> | undefined, visitor: Visitor | undefined, test?: (node: Node) => boolean, start?: number, count?: number): NodeArray<T> | undefined;
-    /**
-     * Starts a new lexical environment and visits a statement list, ending the lexical environment
-     * and merging hoisted decla
+@extends('admin.admin_dashboard')
+@section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<div class="page-content">
+    <!--breadcrumb-->
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+        <div class="breadcrumb-title pe-3">Admin Change Password</div>
+        <div class="ps-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 p-0">
+                    <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Change Password</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="ms-auto">
+
+        </div>
+    </div>
+    <!--end breadcrumb-->
+    <div class="container">
+        <div class="main-body">
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+
+               <form method="post" action="{{ route('update.password')}}">
+                @csrf
+
+                @if (session('status'))
+                 <div class="alert alert-success" role="alert">
+                    {{session('status')}}
+                </div>
+
+                @elseif(session('error'))
+                <div class="alert alert-success" role="alert">
+                    {{session('error')}}
+                </div>
+                @endif
+
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Old Password</h6>
+                                </div>
+                                    <div class="col-sm-9 text-secondary">
+                                    <input type="password" name="old_password" class="form-control" @error('old_password') is-invalid @enderror id="current_password" placeholder="Old Password" />
+
+                                    @error('old_password')
+                                    <span class="text-danger">{{ $message }}</span>
+
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">New Password</h6>
+                                </div>
+                                    <div class="col-sm-9 text-secondary">
+                                    <input type="password" name="new_password" class="form-control" @error('new_password') is-invalid @enderror id="new_password" placeholder="New Password" />
+
+                                    @error('new_password')
+                                    <span class="text-danger">{{ $message }}</span>
+
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Confirm New Password</h6>
+                                </div>
+                                    <div class="col-sm-9 text-secondary">
+                 <input type="password" name="new_password_confirmation" class="form-control" @error('old_password') is-invalid @enderror id="new_password_confirmation" placeholder="Confirm New Password" />
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-9 text-secondary">
+                   <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection

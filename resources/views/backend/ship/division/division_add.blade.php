@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-body">
 
-               <form id="myForm" method="post" action="{{ route('store.coupon')}}" >
+               <form id="myForm" method="post" action="{{ route('store.division')}}" >
                 @csrf
 
 

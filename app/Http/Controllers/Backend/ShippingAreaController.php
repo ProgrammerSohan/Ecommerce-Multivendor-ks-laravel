@@ -13,4 +13,10 @@ class ShippingAreaController extends Controller
         return view('backend.ship.division.division_all',compact('division'));
 
      } //end method
+
+     public function AddDivision(){
+        return view('backend.ship.division.division_add');
+     }//end method
+     
+
 }

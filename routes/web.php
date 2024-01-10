@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
 
@@ -223,6 +224,17 @@ Route::controller(CategoryController::class)->group(function(){
 
     });
 
+     //Shipping Division all route
+     Route::controller(ShippingAreaController::class)->group(function(){
+        Route::get('/all/division','AllDivision')->name('all.division');
+        Route::get('/add/coupon','AddCoupon')->name('add.coupon');
+        Route::post('/store/coupon','StoreCoupon')->name('store.coupon');
+        Route::get('/edit/coupon/{id}','EditCoupon')->name('edit.coupon');
+        Route::post('/update/coupon', 'UpdateCoupon')->name('update.coupon');
+        Route::get('/delete/coupon/{id}', 'DeleteCoupon')->name('delete.coupon');
+
+    });
+
 
 
 
@@ -290,4 +302,4 @@ Route::middleware(['auth','role:user'])->group(function(){
 
     });
 
-});//end group user middleware
+});//end group user middleware 

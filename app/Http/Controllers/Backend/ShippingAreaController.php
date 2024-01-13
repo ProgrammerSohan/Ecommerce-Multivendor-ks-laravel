@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\ShipDistricts;
 use App\Models\ShipDivision;
 use Illuminate\Http\Request;
 
@@ -63,5 +64,17 @@ class ShippingAreaController extends Controller
 
      }//end method
 
+     /***********District CRUD******** */
+     public function AllDistrict(){
+        $district = ShipDistricts::latest()->get();
+        return view('backend.ship.district.district_all',compact('district'));
+
+     }//end method
+
+     public function AddDistrict(){
+          
+      return view('backend.ship.division.division_add');
+
+     }//end method
 
 }

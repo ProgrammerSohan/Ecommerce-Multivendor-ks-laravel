@@ -77,4 +77,19 @@ class ShippingAreaController extends Controller
 
      }//end method
 
+     public function StoreDistrict(Request $request){
+       
+         ShipDistricts::insert([
+            'division_id'=> $request->division_id,
+            'district_name'=> $request->district_name,
+
+         ]);
+         $notification = array(
+            'message'=>'ShipDistricts Inserted Successfully',
+            'alert-type'=>'success'
+         );
+
+         return redirect()->route('all.district')->with($notification);
+     } //end method
+
 }

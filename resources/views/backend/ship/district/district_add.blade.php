@@ -79,13 +79,13 @@
     $(document).ready(function (){
         $('#myForm').validate({
             rules: {
-                division_name: {
+                district_name: {
                     required : true,
                 }
             },
             messages :{
-               division_name: {
-                    required : 'Please Enter Division Name',
+               district_name: {
+                    required : 'Please Enter District Name',
                 }
             },
             errorElement : 'span',

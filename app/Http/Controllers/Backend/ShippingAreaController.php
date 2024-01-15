@@ -72,8 +72,8 @@ class ShippingAreaController extends Controller
      }//end method
 
      public function AddDistrict(){
-          
-      return view('backend.ship.division.division_add');
+          $division = ShipDivision::orderBy('division_name','ASC')->get();
+          return view('backend.ship.district.district_add',compact('division'));
 
      }//end method
 

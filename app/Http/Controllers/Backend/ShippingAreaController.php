@@ -140,5 +140,9 @@ class ShippingAreaController extends Controller
 
       }//end method
 
+      public function GetDistrict($division_id){
+         $dist = ShipDistricts::where('division_id',$division_id)->orderBy('district_name','ASC')->get();
+         return json_encode($dist);
+      }
 
 }

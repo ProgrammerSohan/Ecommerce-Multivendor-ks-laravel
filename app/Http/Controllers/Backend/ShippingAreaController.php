@@ -133,5 +133,12 @@ class ShippingAreaController extends Controller
 
       }//end method
 
+      public function AddState(){
+         $division = ShipDivision::orderBy('division_name','ASC')->get();
+         $district = ShipDistricts::orderBy('district_name','ASC')->get();
+         return view('backend.ship.state.state_add',compact('division','district'));
+
+      }//end method
+
 
 }

@@ -246,6 +246,14 @@ Route::controller(CategoryController::class)->group(function(){
     
         });
 
+        //shipping state all route
+        Route::controller(ShippingAreaController::class)->group(function(){
+            Route::get('/all/state', 'AllState')->name('all.state');
+            Route::get('/add/state', 'AddState')->name('add.state');
+
+            
+        });
+
 
 
 });//admin end middleware

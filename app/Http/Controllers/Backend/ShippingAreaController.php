@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use App\Models\ShipDistricts;
+use App\Models\ShipState;
 use App\Models\ShipDivision;
 use Illuminate\Http\Request;
+use App\Models\ShipDistricts;
+use App\Http\Controllers\Controller;
 
 class ShippingAreaController extends Controller 
 {
@@ -124,5 +125,13 @@ class ShippingAreaController extends Controller
          return redirect()->back()->with($notification);
 
       }//end method
+
+      ////////////state crud/////////////////////////
+      public function AllState(){
+         $state = ShipState::latest()->get();
+         return view('backend.ship.state.state_all',compact('state'));
+
+      }//end method
+
 
 }

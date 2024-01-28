@@ -250,6 +250,7 @@ Route::controller(CategoryController::class)->group(function(){
         Route::controller(ShippingAreaController::class)->group(function(){
             Route::get('/all/state', 'AllState')->name('all.state');
             Route::get('/add/state', 'AddState')->name('add.state');
+            Route::post('/store/state', 'StoreState')->name('store.state');
 
             Route::get('/district/ajax/{division_id}', 'GetDistrict');
 

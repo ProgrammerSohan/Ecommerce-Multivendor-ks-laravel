@@ -822,7 +822,7 @@ function cartDecrement(rowId){
 <!-- start apply coupon -->
  <script type="text/javascript">
 
-function applyCoupon(id){
+function applyCoupon(){
     var coupon_name = $('#coupon_name').val();
         $.ajax({
             type: "POST",

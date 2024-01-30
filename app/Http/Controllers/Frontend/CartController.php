@@ -156,5 +156,10 @@ class CartController extends Controller
 
    }//end method
 
+    public function CouponApply(){
+
+
+    }//end method for coupon apply front
+
 //Programmer Sohan
 }

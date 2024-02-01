@@ -867,6 +867,21 @@ function applyCoupon(){
         })
 
     }
+    //start couponcalculation method
+        function couponCalculation(){
+            $.ajax({
+                type: 'GET',
+                url: '/coupon-calculation',
+                dataType: 'json',
+                success:function(data){
+                    
+                }
+
+            })
+
+        }
+    //end couponcalculation method
+
 
  </script>
 

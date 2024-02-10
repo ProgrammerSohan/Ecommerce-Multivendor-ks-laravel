@@ -31,7 +31,7 @@ class CartController extends Controller
 
                   ]);
                   return response()->json(['success' => 'Successfully Added on Your Cart']);
-            
+
         }else {
                 Cart::add([
                     'id' => $id,
@@ -44,7 +44,7 @@ class CartController extends Controller
                         'color' => $request->color,
                         'size' => $request->size,
                     ],
-                   
+
                 ]);
 
                 return response()->json(['success' => 'Successfully Added On Your Cart' ]);
@@ -127,7 +127,7 @@ class CartController extends Controller
         $cartQty = Cart::count();
         $cartTotal = Cart::total();
 
-        return response()->json(array( 
+        return response()->json(array(
             'carts' =>$carts,
             'cartQty' => $cartQty,
             'cartTotal' => $cartTotal
@@ -147,6 +147,18 @@ class CartController extends Controller
         $row = Cart::get($rowId);
         Cart::update($rowId, $row->qty -1);
 
+        if(Session::has('coupon')){
+            $coupon_name = Session::get('coupon')['coupon_name'];
+            $coupon = Coupon::where('coupon_name',$coupon_name)->first();
+
+            Session::put('coupon',[
+                'coupon_name' => $coupon->coupon_name,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
+                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100 )
+            ]);
+        }
+
         return response()->json('Decrement');
 
     }//end method
@@ -154,6 +166,21 @@ class CartController extends Controller
    public function CartIncrement($rowId){
       $row = Cart::get($rowId);
       Cart::update($rowId, $row->qty +1);
+
+      if(Session::has('coupon')){
+        $coupon_name = Session::get('coupon')['coupon_name'];
+        $coupon = Coupon::where('coupon_name',$coupon_name)->first();
+
+        Session::put('coupon',[
+            'coupon_name' => $coupon->coupon_name,
+            'coupon_discount' => $coupon->coupon_discount,
+            'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
+            'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100)
+
+        ]);
+
+      }
+
       return response()->json('Increment');
 
    }//end method

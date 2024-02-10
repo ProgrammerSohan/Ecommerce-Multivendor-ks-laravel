@@ -243,7 +243,7 @@ Route::controller(CategoryController::class)->group(function(){
             Route::get('/edit/district/{id}','EditDistrict')->name('edit.district');
             Route::post('/update/district', 'UpdateDistrict')->name('update.district');
             Route::get('/delete/district/{id}', 'DeleteDistrict')->name('delete.district');
-    
+
         });
 
         //shipping state all route
@@ -283,7 +283,7 @@ Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
 
 Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 
-/// Add to cart store data For Product Details Page 
+/// Add to cart store data For Product Details Page
 Route::post('/dcart/data/store/{id}',[CartController::class, 'AddToCartDetails']);
 
 //add to wishlist
@@ -295,6 +295,10 @@ Route::post('/add-to-compare/{product_id}',[CompareController::class,'AddToCompa
 Route::post('/coupon-apply',[CartController::class, 'CouponApply']);
 Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
 Route::get('/coupon-remove',[CartController::class, 'CouponRemove']);
+
+//checkout page route
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+
 
 
 //User All Route
@@ -313,7 +317,7 @@ Route::middleware(['auth','role:user'])->group(function(){
     Route::controller(CompareController::class)->group(function(){
         Route::get('/compare', 'AllCompare')->name('compare');
         Route::get('/get-compare-product','GetCompareProduct');
-        
+
         Route::get('/compare-remove/{id}', 'CompareRemove');
 
     });
@@ -330,6 +334,6 @@ Route::middleware(['auth','role:user'])->group(function(){
 
     });
 
-});//end group user middleware 
+});//end group user middleware
 
 //starting from my new pc 10-02-2024 by sohan

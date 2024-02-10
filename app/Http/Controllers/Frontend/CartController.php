@@ -9,6 +9,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -231,6 +232,34 @@ class CartController extends Controller
         return response()->json(['success' => 'Coupon Remove Successfully']);
 
     }//end method
+
+    public function CheckoutCreate(){
+
+        if(Auth::check()){
+
+            if(Cart::total() > 0){
+                $carts = Cart::content();
+                $cartQty = Cart::count();
+                $cartTotal = Cart::total();
+
+            return view('frontend.checkout.checkout_view',compact('carts','cartQty','cartTotal'));
+         }else {
+            $notification = array(
+                'message' => 'Shopping At list One Product',
+                'alert-type' => 'error'
+            );
+            return redirect()->to('/')->with($notification);
+
+         }
+        }else {
+            $notification = array(
+                'message' => 'You need to login first',
+                'alert-type' => 'error'
+            );
+            return redirect()->route('login')->with($notification);
+        }
+
+    }//end method //https://packagist.org/packages/bumbummen99/shoppingcart
 
 
 //Programmer Sohan

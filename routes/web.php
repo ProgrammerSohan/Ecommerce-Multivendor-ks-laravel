@@ -300,6 +300,16 @@ Route::get('/coupon-remove',[CartController::class, 'CouponRemove']);
 Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
 
 
+    //cart all route
+    Route::controller(CartController::class)->group(function(){
+        Route::get('/mycart', 'MyCart')->name('mycart');
+        Route::get('/get-cart-product', 'GetCartProduct');
+        Route::get('/cart-remove/{rowId}','CartRemove');
+
+        Route::get('/cart-decrement/{rowId}', 'CartDecrement');
+        Route::get('/cart-increment/{rowId}', 'CartIncrement');
+
+    });
 
 //User All Route
 
@@ -323,16 +333,6 @@ Route::middleware(['auth','role:user'])->group(function(){
     });
 
 
-    //cart all route
-    Route::controller(CartController::class)->group(function(){
-        Route::get('/mycart', 'MyCart')->name('mycart');
-        Route::get('/get-cart-product', 'GetCartProduct');
-        Route::get('/cart-remove/{rowId}','CartRemove');
-
-        Route::get('/cart-decrement/{rowId}', 'CartDecrement');
-        Route::get('/cart-increment/{rowId}', 'CartIncrement');
-
-    });
 
 });//end group user middleware
 

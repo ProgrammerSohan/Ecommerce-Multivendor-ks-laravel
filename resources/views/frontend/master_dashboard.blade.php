@@ -20,6 +20,8 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 </head>
 
 <body>
@@ -77,6 +79,30 @@
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type','info') }}"
+        switch(type){
+           case 'info':
+           toastr.info(" {{ Session::get('message') }} ");
+           break;
+           case 'success':
+           toastr.success(" {{ Session::get('message') }} ");
+           break;
+           case 'warning':
+           toastr.warning(" {{ Session::get('message') }} ");
+           break;
+           case 'error':
+           toastr.error(" {{ Session::get('message') }} ");
+           break;
+        }
+        @endif
+       </script>
+
+
 
     <script type="text/javascript">
         $.ajaxSetup({
@@ -146,7 +172,7 @@
                     //color
                     $('select[name="color"]').empty();
                     $.each(data.color,function(key,value){
-                      $('select[name="color"]').append('<option value="'+value+'">'+value+'</option>')  
+                      $('select[name="color"]').append('<option value="'+value+'">'+value+'</option>')
                       if(data.color == ""){
                         $('#colorArea').hide();
                       }else {
@@ -219,13 +245,13 @@
         //End add to cart product
 
 
-                /// Start Details Page Add To Cart Product 
+                /// Start Details Page Add To Cart Product
     function addToCartDetails(){
-     var product_name = $('#dpname').text();  
+     var product_name = $('#dpname').text();
      var id = $('#dproduct_id').val();
      var color = $('#dcolor option:selected').text();
      var size = $('#dsize option:selected').text();
-     var quantity = $('#dqty').val(); 
+     var quantity = $('#dqty').val();
      $.ajax({
         type: "POST",
         dataType : 'json',
@@ -235,41 +261,41 @@
         url: "/dcart/data/store/"+id,
         success:function(data){
             miniCart();
-          
+
             // console.log(data)
-            // Start Message 
+            // Start Message
             const Toast = Swal.mixin({
                   toast: true,
                   position: 'top-end',
-                  icon: 'success', 
+                  icon: 'success',
                   showConfirmButton: false,
-                  timer: 3000 
+                  timer: 3000
             })
             if ($.isEmptyObject(data.error)) {
-                    
+
                     Toast.fire({
                     type: 'success',
-                    title: data.success, 
+                    title: data.success,
                     })
             }else{
-               
+
            Toast.fire({
                     type: 'error',
-                    title: data.error, 
+                    title: data.error,
                     })
                 }
-              // End Message  
-        } 
-     }) 
-    } 
-     /// end Details Page Add To Cart Product 
+              // End Message
+        }
+     })
+    }
+     /// end Details Page Add To Cart Product
 
 
     </script>
 
 
     <script type="text/javascript">
-    
+
      function miniCart(){
         $.ajax({
             type: 'GET',
@@ -299,7 +325,7 @@
                                 </li>
                      </ul>
                      <hr> <br>
-                    
+
                     `
 
                 });
@@ -320,28 +346,28 @@
         dataType:'json',
         success:function(data){
         miniCart();
-             // Start Message 
+             // Start Message
             const Toast = Swal.mixin({
                   toast: true,
                   position: 'top-end',
-                  icon: 'success', 
+                  icon: 'success',
                   showConfirmButton: false,
-                  timer: 3000 
+                  timer: 3000
             })
             if ($.isEmptyObject(data.error)) {
-                    
+
                     Toast.fire({
                     type: 'success',
-                    title: data.success, 
+                    title: data.success,
                     })
             }else{
-               
+
            Toast.fire({
                     type: 'error',
-                    title: data.error, 
+                    title: data.error,
                     })
                 }
-              // End Message  
+              // End Message
         }
      })
    }
@@ -353,7 +379,7 @@
 
 <!--  /// Start Wishlist Add -->
 <script type="text/javascript">
-        
+
     function addToWishList(product_id){
         $.ajax({
             type: "POST",
@@ -361,30 +387,30 @@
             url: "/add-to-wishlist/"+product_id,
             success:function(data){
                 wishlist();
-                 // Start Message 
+                 // Start Message
         const Toast = Swal.mixin({
               toast: true,
               position: 'top-end',
-             // icon: 'success', 
+             // icon: 'success',
               showConfirmButton: false,
-              timer: 3000 
+              timer: 3000
         })
         if ($.isEmptyObject(data.error)) {
-                
+
                 Toast.fire({
                 type: 'success',
-                icon: 'success', 
-                title: data.success, 
+                icon: 'success',
+                title: data.success,
                 })
         }else{
-           
+
        Toast.fire({
                 type: 'error',
                 icon: 'error',
-                title: data.error, 
+                title: data.error,
                 })
             }
-          // End Message  
+          // End Message
             }
         })
     }
@@ -394,7 +420,7 @@
 
 <!--  /// Start Load Wishlist Data -->
 <script type="text/javascript">
-        
+
     function wishlist(){
         $.ajax({
             type: "GET",
@@ -408,7 +434,7 @@
 
                     rows +=` <tr class="pt-30">
                                 <td class="custome-checkbox pl-30">
-                                   
+
                                 </td>
           <td class="image product-thumbnail pt-40"><img src="/${value.product.product_thambnail}" alt="#" /></td>
                                 <td class="product-des product-name">
@@ -421,7 +447,7 @@
                                     </div>
                                 </td>
                                 <td class="price" data-title="Price">
-                                   ${value.product.discount_price == null 
+                                   ${value.product.discount_price == null
                                     ?`<h3 class="text-brand">$${value.product.selling_price}</h3>`
                                     :`<h3 class="text-brand">$${value.product.discount_price}</h3>`
                                     }
@@ -433,7 +459,7 @@
 
                                   }
                                 </td>
-                                
+
                                 <td class="action text-center" data-title="Remove">
                                     <a type="submit" class="text-body" id="${value.id}" onclick="wishlistRemove(this.id)"><i class="fi-rs-trash"></i></a>
                                 </td>
@@ -501,38 +527,38 @@
 
 <!--  /// Start Compare Add -->
 <script type="text/javascript">
-        
+
     function addToCompare(product_id){
         $.ajax({
             type: "POST",
             dataType: 'json',
             url: "/add-to-compare/"+product_id,
             success:function(data){
-                
-                 // Start Message 
+
+                 // Start Message
         const Toast = Swal.mixin({
               toast: true,
               position: 'top-end',
-             // icon: 'success', 
+             // icon: 'success',
               showConfirmButton: false,
-              timer: 3000 
+              timer: 3000
         })
         if ($.isEmptyObject(data.error)) {
-                
+
                 Toast.fire({
                 type: 'success',
-                icon: 'success', 
-                title: data.success, 
+                icon: 'success',
+                title: data.success,
                 })
         }else{
-           
+
        Toast.fire({
                 type: 'error',
                 icon: 'error',
-                title: data.error, 
+                title: data.error,
                 })
             }
-          // End Message  
+          // End Message
             }
         })
     }
@@ -543,7 +569,7 @@
 <!-- t255 below -->
 <!--  /// Start Load compare Data -->
 <script type="text/javascript">
-        
+
     function compare(){
         $.ajax({
             type: "GET",
@@ -551,40 +577,40 @@
             url: "/get-compare-product/",
             success:function(response){
 
-               
+
                 var rows = ""
                 $.each(response, function(key,value){
 
                     rows +=`<tr class="pr_image">
                                     <td class="text-muted font-sm fw-600 font-heading mw-200">Preview</td>
                <td class="row_img"><img src="/${value.product.product_thambnail}" style="width:300px; height:300px;" alt="compare-img" /></td>
-                                    
+
                                 </tr>
                                 <tr class="pr_title">
                                     <td class="text-muted font-sm fw-600 font-heading">Name</td>
                                     <td class="product_name">
                          <h6><a href="shop-product-full.html" class="text-heading">${value.product.product_name}</a></h6>
                                     </td>
-                                   
+
                                 </tr>
                                 <tr class="pr_price">
                                     <td class="text-muted font-sm fw-600 font-heading">Price</td>
                                     <td class="product_price">
-                                        ${value.product.discount_price == null 
+                                        ${value.product.discount_price == null
                                     ?`<h4 class="price text-brand">$${value.product.selling_price}</h4>`
                                     :`<h4 class="price text-brand">$${value.product.discount_price}</h4>`
                                     }
 
                                     </td>
-                                  
+
                                 </tr>
-                                
+
                                 <tr class="description">
                                     <td class="text-muted font-sm fw-600 font-heading">Description</td>
                                     <td class="row_text font-xs">
                                         <p class="font-sm text-muted">${value.product.short_descp}</p>
                                     </td>
-                                    
+
                                 </tr>
                                 <tr class="pr_stock">
                                     <td class="text-muted font-sm fw-600 font-heading">Stock status</td>
@@ -594,16 +620,16 @@
                                     : `<span class="stock-status out-stock mb-0">Stock Out</span>`
 
                                   }
-                                       </td> 
-                                                                      
+                                       </td>
+
                                 </tr>
-                                
+
                                 <tr class="pr_remove text-muted">
                                     <td class="text-muted font-md fw-600"></td>
                                     <td class="row_remove">
                          <a type="submit" class="text-muted" id="${value.id}" onclick="compareRemove(this.id)"><i class="fi-rs-trash mr-5"></i><span>Remove</span> </a>
                                     </td>
-                                    
+
                                 </tr> `
 
                 });
@@ -618,7 +644,7 @@
 
     //compare remove start//same as wishlistremove
 
-    
+
     function compareRemove(id){
         $.ajax({
             type: "GET",
@@ -666,7 +692,7 @@
 
 <!-- //start load my cart -->
 <script>
-    
+
     function cart(){
         $.ajax({
             type: 'GET',
@@ -674,43 +700,43 @@
             dataType: 'json',
             success:function(response){
               //  console.log(response)
-             
+
                 var rows = ""
 
                 $.each(response.carts, function(key,value){
                     rows +=`    <tr class="pt-30">
                             <td class="custome-checkbox pl-30">
-                                
+
 
                             </td>
               <td class="image product-thumbnail pt-40"><img src="/${value.options.image}" alt="#"></td>
                             <td class="product-des product-name">
          <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="shop-product-right.html">${value.name}</a></h6>
-                             
+
                             </td>
                             <td class="price" data-title="Price">
                                 <h4 class="text-body">${value.price} </h4>
                             </td>
                             <td class="price" data-title="Price">
-                                ${value.options.color == null 
-                                 ? `<span>....</span>`       
-                                 : `<h6 class="text-body">${value.options.color}</h6>`   
+                                ${value.options.color == null
+                                 ? `<span>....</span>`
+                                 : `<h6 class="text-body">${value.options.color}</h6>`
                                 }
-                                
+
                             </td>
                             <td class="price" data-title="Price">
-                                ${value.options.size == null 
-                                 ? `<span>....</span>`       
-                                 : `<h6 class="text-body">${value.options.size}</h6>`   
+                                ${value.options.size == null
+                                 ? `<span>....</span>`
+                                 : `<h6 class="text-body">${value.options.size}</h6>`
                                 }
-                                
+
                             </td>
 
                             <td class="text-center detail-info" data-title="Stock">
                                 <div class="detail-extralink mr-15">
                                     <div class="detail-qty border radius">
                                         <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-            <a type="submit" class="qty-down" id="${value.rowId}" onclick="cartDecrement(this.id)"><i class="fi-rs-angle-small-down"></i></a>                                        
+            <a type="submit" class="qty-down" id="${value.rowId}" onclick="cartDecrement(this.id)"><i class="fi-rs-angle-small-down"></i></a>
 
                         <input type="text" name="quantity" class="qty-val" value="${value.qty}" min="1">
 
@@ -835,7 +861,7 @@ function applyCoupon(){
 
             success:function(data){
                 couponCalculation();
-                
+
                 if(data.validity == true){
                     $('#couponField').hide();
                 }
@@ -889,7 +915,7 @@ function applyCoupon(){
                                     <h4 class="text-brand text-end">$${data.total}</h4>
                                 </td>
                             </tr>
-                           
+
                             <tr>
                                 <td class="cart_total_label">
                                     <h6 class="text-muted">Grand Total</h6>
@@ -911,7 +937,7 @@ function applyCoupon(){
                                     <h4 class="text-brand text-end">$${data.subtotal}</h4>
                                 </td>
                             </tr>
-                           
+
                             <tr>
                                 <td class="cart_total_label">
                                     <h6 class="text-muted">Coupon</h6>
@@ -920,7 +946,7 @@ function applyCoupon(){
                <h6 class="text-brand text-end">${data.coupon_name} <a type="submit" onclick="couponRemove()"><i class="fi-rs-trash"></i></a></h6>
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td class="cart_total_label">
                                     <h6 class="text-muted">Discount Amount</h6>
@@ -929,7 +955,7 @@ function applyCoupon(){
                                     <h4 class="text-brand text-end">$${data.discount_amount}</h4>
                                 </td>
                             </tr>
-                           
+
                             <tr>
                                 <td class="cart_total_label">
                                     <h6 class="text-muted">Grand Total</h6>
@@ -960,7 +986,7 @@ function applyCoupon(){
 <script type="text/javascript">
     //coupon remove start
     function couponRemove(){
-    
+
         $.ajax({
             type: "GET",
             dataType: 'json',

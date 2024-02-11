@@ -24,7 +24,7 @@ class CartController extends Controller
                 'qty'   => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options'=> [
+                'options'=> [  //options
                     'image' => $product->product_thambnail,
                     'color' => $request->color,
                     'size'  => $request->size,
@@ -209,7 +209,7 @@ class CartController extends Controller
 
     }//end method for coupon apply front
 
-    public function CouponCalculation(){
+    public function CouponCalculation(){//
         if(Session::has('coupon')){
             return response()->json(array(
                 'subtotal' => Cart::total(),

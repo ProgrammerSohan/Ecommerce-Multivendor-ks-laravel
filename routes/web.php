@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\User\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -332,6 +333,11 @@ Route::middleware(['auth','role:user'])->group(function(){
 
     });
 
+    //wishlist all route
+    Route::controller(CheckoutController::class)->group(function(){
+        Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
+        Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
+    });
 
 
 });//end group user middleware

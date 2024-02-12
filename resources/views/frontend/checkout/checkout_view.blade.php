@@ -1,6 +1,8 @@
 @extends('frontend.master_dashboard')
 @section('main')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
@@ -56,13 +58,8 @@
                      <div class="row shipping_calculator">
                         <div class="form-group col-lg-6">
                             <div class="custom_select">
-                                <select class="form-control select-active">
-                                    <option value="">Select an option...</option>
-                                    <option value="AX">Aland Islands</option>
-                                    <option value="AF">Afghanistan</option>
-                                    <option value="AL">Albania</option>
-                                    <option value="DZ">Algeria</option>
-                                    <option value="AD">Andorra</option>
+                                <select name="district_id" class="form-control">
+
 
                                 </select>
                             </div>
@@ -76,13 +73,8 @@
 <div class="row shipping_calculator">
                         <div class="form-group col-lg-6">
                             <div class="custom_select">
-                                <select class="form-control select-active">
-                                    <option value="">Select an option...</option>
-                                    <option value="AX">Aland Islands</option>
-                                    <option value="AF">Afghanistan</option>
-                                    <option value="AL">Albania</option>
-                                    <option value="DZ">Algeria</option>
-                                    <option value="AD">Andorra</option>
+                                <select name="state_id" class="form-control">
+
 
                                 </select>
                             </div>
@@ -223,5 +215,53 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $('select[name="division_id"]').on('change', function(){
+            var division_id = $(this).val();
+            if (division_id) {
+                $.ajax({
+                    url: "{{ url('/district-get/ajax') }}/"+division_id,
+                    type: "GET",
+                    dataType:"json",
+                    success:function(data){
+                        $('select[name="district_id"]').html('');
+                        var d =$('select[name="district_id"]').empty();
+                        $.each(data, function(key, value){
+                            $('select[name="district_id"]').append('<option value="'+ value.id + '">' + value.district_name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+    });
+
+    //show state data
+    $(document).ready(function(){
+        $('select[name="district_id"]').on('change', function(){
+            var district_id = $(this).val();
+            if (district_id) {
+                $.ajax({
+                    url: "{{ url('/state-get/ajax') }}/"+district_id,
+                    type: "GET",
+                    dataType:"json",
+                    success:function(data){
+                        $('select[name="state_id"]').html('');
+                        var d =$('select[name="state_id"]').empty();
+                        $.each(data, function(key, value){
+                            $('select[name="state_id"]').append('<option value="'+ value.id + '">' + value.state_name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+    });
+</script>
 
 @endsection

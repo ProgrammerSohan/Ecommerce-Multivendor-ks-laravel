@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -333,7 +334,7 @@ Route::middleware(['auth','role:user'])->group(function(){
 
     });
 
-    //wishlist all route
+    //checkout all route
     Route::controller(CheckoutController::class)->group(function(){
         Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
         Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
@@ -341,6 +342,12 @@ Route::middleware(['auth','role:user'])->group(function(){
         Route::post('/checkout/store','CheckoutStore')->name('checkout.store');
     });
 
+    //stripe all route
+    Route::controller(StripeController::class)->group(function(){
+        Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
+
+
+    });
 
 });//end group user middleware
 

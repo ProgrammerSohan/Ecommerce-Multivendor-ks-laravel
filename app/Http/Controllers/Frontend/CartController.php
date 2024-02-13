@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     public function AddToCart(Request $request, $id){
+
+        if(Session::has('coupon')){
+            Session::forget('coupon');
+        }
+
         $product = Product::findOrFail($id);
 
         if($product->discount_price == NULL){
@@ -55,6 +60,10 @@ class CartController extends Controller
     }//end method
 
     public function AddToCartDetails(Request $request, $id){
+
+            if(Session::has('coupon')){
+                Session::forget('coupon');
+            }
 
         $product = Product::findOrFail($id);
 
@@ -141,6 +150,20 @@ class CartController extends Controller
 
     public function CartRemove($rowId){
         Cart::remove($rowId);
+
+        if(Session::has('coupon')){
+            $coupon_name = Session::get('coupon')['coupon_name'];
+            $coupon = Coupon::where('coupon_name',$coupon_name)->first();
+
+            Session::put('coupon',[
+                'coupon_name'     => $coupon->coupon_name,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
+                'total_amount'    => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100)
+
+            ]);
+        }
+
         return response()->json(['success' => 'Successfully Remove From Cart']);
 
     }//end method

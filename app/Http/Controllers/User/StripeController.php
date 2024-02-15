@@ -63,5 +63,31 @@ class StripeController extends Controller
 
             ]);
 
+            $carts = Cart::content();
+            foreach($carts as $cart){
+                OrderItem::insert([
+                    'order_id'   => $order_id,
+                    'product_id' => $cart->id,
+                    'vendor_id'  => $cart->options->vendor,
+                    'color'      => $cart->options->color,
+                    'size'       => $cart->options->size,
+                    'qty'        => $cart->qty,
+                    'price'      => $cart->price,
+                    'created_at' => Carbon::now(),
+
+                ]);
+            }//end foreach
+            if(Session::has('coupon')){
+                Session::forget('coupon');
+            }
+
+            Cart::destroy();
+
+            $notification = array(
+                'message' => 'Your Order Place Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('dashboard')->with($notification);
+
      } //end method
 }

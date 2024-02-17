@@ -345,7 +345,7 @@ Route::middleware(['auth','role:user'])->group(function(){
     //stripe all route
     Route::controller(StripeController::class)->group(function(){
         Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
-
+        Route::post('/cash/order', 'CashOrder')->name('cash.order');
 
     });
 

@@ -63,6 +63,18 @@ class StripeController extends Controller
 
             ]);
 
+            //start send email
+            $invoice = Order::findOrFail($order_id);
+
+            $data = [
+                'invoice_no' => $invoice->invoice_no,
+                'amount' => $total_amount,
+                'name'   => $invoice->name,
+                'email'  => $invoice->email,
+
+             ];
+
+            //end send email
             $carts = Cart::content();
             foreach($carts as $cart){
                 OrderItem::insert([

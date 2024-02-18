@@ -21,6 +21,7 @@ use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\VendorOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,7 +114,13 @@ Route::middleware(['auth','role:vendor'])->group(function(){
 
     });
 
-});// end group middleware
+    //vendor order
+    Route::controller(VendorOrderController::class)->group(function(){
+        Route::get('/vendor/order', 'VendorOrder')->name('vendor.order');
+
+    });
+
+});// end vendor group middleware
 
 //Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
 //Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login');

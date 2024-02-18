@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\Backend\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -258,6 +259,13 @@ Route::controller(CategoryController::class)->group(function(){
             Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
 
             Route::get('/district/ajax/{division_id}', 'GetDistrict');
+
+        });
+
+          //Admin Order all route
+          Route::controller(OrderController::class)->group(function(){
+            Route::get('/pending/order', 'PendingOrder')->name('pending.order');
+
 
         });
 

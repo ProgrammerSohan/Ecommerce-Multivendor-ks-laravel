@@ -22,6 +22,7 @@ use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\VendorOrderController;
+use App\Http\Controllers\User\AllUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -363,6 +364,14 @@ Route::middleware(['auth','role:user'])->group(function(){
         Route::post('/cash/order', 'CashOrder')->name('cash.order');
 
     });
+
+     //user Dashboard all route
+     Route::controller(AllUserController::class)->group(function(){
+        Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
+
+
+    });
+
 
 });//end group user middleware
 

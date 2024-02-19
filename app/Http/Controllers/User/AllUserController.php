@@ -18,5 +18,10 @@ class AllUserController extends Controller
 
      }//end method
 
+       public function UserChangePassword(){
+          return view('frontend.userdashboard.user_change_password');
+
+       }//end method
+
 
 }

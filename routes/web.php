@@ -44,7 +44,7 @@ Route::get('/',[IndexController::class,'Index']);
 
 //user
 Route::middleware(['auth'])->group(function(){
-    Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
+    Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');//dashboard
     Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
 
@@ -368,7 +368,7 @@ Route::middleware(['auth','role:user'])->group(function(){
      //user Dashboard all route
      Route::controller(AllUserController::class)->group(function(){
         Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
-
+        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
 
     });
 

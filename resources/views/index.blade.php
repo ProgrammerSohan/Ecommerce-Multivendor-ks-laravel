@@ -23,7 +23,7 @@
               <a class="nav-link active"  href="{{ route('dashboard') }}" ><i class="fi-rs-settings-sliders mr-10"></i>Dashboard</a>
                                 </li>
             <li class="nav-item">
-            <a class="nav-link" href="#orders"> <i class="fi-rs-shopping-bag mr-10"></i>Orders</a>
+      <a class="nav-link" href=""> <i class="fi-rs-shopping-bag mr-10"></i>Orders</a>
                                 </li>
             <li class="nav-item">
               <a class="nav-link" href="#track-orders"><i class="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>

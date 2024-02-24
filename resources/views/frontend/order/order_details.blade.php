@@ -131,5 +131,100 @@
     </div>
 </div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table" style="font-weight: 600;">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-1">
+                                <label for="">Image</label>
+                            </td>
+                            <td class="col-md-2">
+                                <label for="">Product Name</label>
+                            </td>
+                            <td class="col-md-2">
+                                <label for="">Vendor Name</label>
+                            </td>
+                            <td class="col-md-2">
+                                <label for="">Product Code</label>
+                            </td>
+                            <td class="col-md-1">
+                                <label for="">Color</label>
+                            </td>
+                            <td class="col-md-1">
+                                <label for="">Size</label>
+                            </td>
+                            <td class="col-md-1">
+                                <label for="">Quantity</label>
+                            </td>
+                            <td class="col-md-3">
+                                <label for="">Price</label>
+                            </td>
+
+                        </tr>
+
+                        @foreach ($orderItem as $item)
+                  <tr>
+                  <td class="col-md-1">
+                <label for=""><img src="{{ asset($item->product->product_thambnail) }}" style="width:50px; height:50px;" alt=""></label>
+                   </td>
+                   <td class="col-md-1">
+                     <label for="">{{ $item->product->product_name }}</label>
+                   </td>
+                   @if($item->vendor_id == NULL)
+                    <td class="col-md-2">
+                        <label for="">Owner</label>
+                    </td>
+                   @else
+                   <td class="col-md-2">
+                    <label for="">{{ $item->product->vendor->name }}</label>
+                </td>
+                @endif
+                <td class="col-md-2">
+                    <label for="">{{ $item->product->product_code}}</label>
+                </td>
+                @if($item->color ==NULL)
+                  <td class="col-md-1">
+                    <label for="">....</label>
+                  </td>
+                @else
+                <td class="col-md-1">
+                    <label for="">{{ $item->color }}</label>
+                  </td>
+                  @endif
+                  @if($item->size == NULL)
+                    <td class="col-md-1">
+                        <label for="">...</label>
+                    </td>
+                  @else
+                  <td class="col-md-1">
+                    <label for="">{{ $item->size }}</label>
+                </td>
+                @endif
+                <td class="col-md-1">
+                    <label for="">{{ $item->qty }}</label>
+                </td>
+                <td class="col-md-3">
+                    <label for="">${{ $item->price }} <br> Total = ${{ $item->price * $item->qty }}</label>
+                </td>
+
+                  </tr>
+
+                        @endforeach
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 
 @endsection

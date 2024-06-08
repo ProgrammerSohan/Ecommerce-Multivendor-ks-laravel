@@ -273,6 +273,7 @@ Route::controller(CategoryController::class)->group(function(){
           //Admin Order all route
           Route::controller(OrderController::class)->group(function(){
             Route::get('/pending/order', 'PendingOrder')->name('pending.order');
+            Route::get('/admin/order/details/{order_id}','AdminOrderDetails')->name('admin.order.details');
 
 
         });

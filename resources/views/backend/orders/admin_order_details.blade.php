@@ -111,8 +111,13 @@
                                             </tr>
                                             <tr>
                                                 <th>Order Status:</th>
-                                                <th><span class="badge rounded-pill bg-warning">{{ $order->status }}</span></th>
+                                                <th><span class="badge rounded-pill bg-info">{{ $order->status }}</span></th>
                                             </tr>
+
+                     <tr>
+                         <th></th>
+                         <th><a href="" class="btn btn-block btn-success">Confirm Order</a></th>
+                      </tr>
 
                                         </table>
 

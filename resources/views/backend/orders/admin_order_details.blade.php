@@ -25,40 +25,100 @@
 
 <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
     <div class="col">
-        <div class="card">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="assets/images/gallery/10.png" alt="..." class="card-img">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="card">
+                                    <div class="card-header"><h4>Shipping Details</h4></div>
+                                    <hr>
+                                    <div class="card-body">
+                                        <table class="table" style="background:#F4F6FA;font-weight:600;">
+                                            <tr>
+                                                <th>Shipping Name</th>
+                                                <th>{{ $order->name }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Shipping Phone:</th>
+                                                <th>{{ $order->phone }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Shipping Email:</th>
+                                                <th>{{ $order->email }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Shipping Address:</th>
+                                                <th>{{ $order->address }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Division:</th>
+                                                <th>{{ $order->division->division_name }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>District</th>
+                                                <th>{{ $order->district->district_name }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>State:</th>
+                                                <th>{{ $order->state->state_name }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Post Code:</th>
+                                                <th>{{ $order->post_code }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Order Date :</th>
+                                                <th>{{ $order->order_date }}</th>
+                                            </tr>
+
+                                        </table>
+
+                                    </div>
+
+                                </div>
     </div>
 
 
     <div class="col">
-        <div class="card">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="assets/images/gallery/11.png" alt="..." class="card-img">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="card">
+                                    <div class="card-header">
+                                         <h4>Order Details
+                                            <span class="text-danger">Invoice : {{ $order->invoice_no }}</span>
+                                         </h4>
+                                    </div>
+                                    <hr>
+                                    <div class="card-body">
+                                        <table class="table" style="background: #F4F6FA; font-weight:600;">
+                                            <tr>
+                                                <th>Name:</th>
+                                                <th>{{ $order->user->name }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Phone:</th>
+                                                <th>{{ $order->user->phone }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Payment Type:</th>
+                                                <th>{{ $order->payment_method }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Transx ID:</th>
+                                                <th>{{ $order->transaction_id }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Invoice:</th>
+                                                <th class="text-danger">{{ $order->invoice_no }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Order Amount</th>
+                                                <th>${{ $order->amount }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Order Status:</th>
+                                                <th><span class="badge rounded-pill bg-warning">{{ $order->status }}</span></th>
+                                            </tr>
+
+                                        </table>
+
+                                    </div>
+
+                                </div>
     </div>
 </div>
 
@@ -70,18 +130,90 @@
 <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-1">
     <div class="col">
         <div class="card">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="assets/images/gallery/10.png" alt="..." class="card-img">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
-                        </p>
-                    </div>
-                </div>
+        <div class="table-responsive">
+                <table class="table" style="font-weight: 600;">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-1">
+                                <label for="">Image</label>
+                            </td>
+                            <td class="col-md-2">
+                                <label for="">Product Name</label>
+                            </td>
+                            <td class="col-md-2">
+                                <label for="">Vendor Name</label>
+                            </td>
+                            <td class="col-md-2">
+                                <label for="">Product Code</label>
+                            </td>
+                            <td class="col-md-1">
+                                <label for="">Color</label>
+                            </td>
+                            <td class="col-md-1">
+                                <label for="">Size</label>
+                            </td>
+                            <td class="col-md-1">
+                                <label for="">Quantity</label>
+                            </td>
+                            <td class="col-md-3">
+                                <label for="">Price</label>
+                            </td>
+
+                        </tr>
+
+                        @foreach ($orderItem as $item)
+                  <tr>
+                  <td class="col-md-1">
+                <label for=""><img src="{{ asset($item->product->product_thambnail) }}" style="width:50px; height:50px;" alt=""></label>
+                   </td>
+                   <td class="col-md-1">
+                     <label for="">{{ $item->product->product_name }}</label>
+                   </td>
+                   @if($item->vendor_id == NULL)
+                    <td class="col-md-2">
+                        <label for="">Owner</label>
+                    </td>
+                   @else
+                   <td class="col-md-2">
+                    <label for="">{{ $item->product->vendor->name }}</label>
+                </td>
+                @endif
+                <td class="col-md-2">
+                    <label for="">{{ $item->product->product_code}}</label>
+                </td>
+                @if($item->color ==NULL)
+                  <td class="col-md-1">
+                    <label for="">....</label>
+                  </td>
+                @else
+                <td class="col-md-1">
+                    <label for="">{{ $item->color }}</label>
+                  </td>
+                  @endif
+                  @if($item->size == NULL)
+                    <td class="col-md-1">
+                        <label for="">...</label>
+                    </td>
+                  @else
+                  <td class="col-md-1">
+                    <label for="">{{ $item->size }}</label>
+                </td>
+                @endif
+                <td class="col-md-1">
+                    <label for="">{{ $item->qty }}</label>
+                </td>
+                <td class="col-md-3">
+                    <label for="">${{ $item->price }} <br> Total = ${{ $item->price * $item->qty }}</label>
+                </td>
+
+                  </tr>
+
+                        @endforeach
+
+                    </tbody>
+
+                </table>
+
             </div>
         </div>
     </div>

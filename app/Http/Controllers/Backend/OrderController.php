@@ -33,5 +33,11 @@ class OrderController extends Controller
 
      }//end method
 
+     public function AdminProcessingOrder(){
+         $orders = Order::where('status','processing')->orderBy('id','DESC')->get();
+         return view('backend.orders.processing_orders',compact('orders'));
+
+     }//end method
+
 
 }

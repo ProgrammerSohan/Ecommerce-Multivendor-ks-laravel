@@ -39,5 +39,11 @@ class OrderController extends Controller
 
      }//end method
 
+     public function AdminDeliveredOrder(){
+         $orders = Order::where('status','delivered')->orderBy('id','DESC')->get();
+         return view('backend.orders.delivered_orders',compact('orders'));
+
+     }//end method
+
 
 }

@@ -279,6 +279,8 @@ Route::controller(CategoryController::class)->group(function(){
             Route::get('/admin/processing/order','AdminProcessingOrder')->name('admin.processing.order');
             Route::get('/admin/delivered/order','AdminDeliveredOrder')->name('admin.delivered.order');
 
+            Route::get('/pending/confirm/{order_id}', 'PendingToConfirm')->name('pending-confirm');
+
 
         });
 

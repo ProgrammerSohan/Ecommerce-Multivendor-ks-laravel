@@ -52,7 +52,8 @@
                                 <td>{{ $item->payment_method }}</td>
                                 <td> <span class="badge rounded-pill bg-success">{{ $item->status }}</span></td>
                                 <td>
-                          <a href="{{ route('admin.order.details',$item->id) }} " class="btn btn-info" title="Details"><i class="fa fa-eye"></i> </a>
+              <a href="{{ route('admin.order.details',$item->id) }} " class="btn btn-info" title="Details"><i class="fa fa-eye"></i> </a>
+              <a href="{{ route('admin.invoice.download',$item->id) }}" class="btn btn-danger" title="Invoice Pdf"><i class="fa fa-download"></i></a>
                                 </td>
 
                             </tr>

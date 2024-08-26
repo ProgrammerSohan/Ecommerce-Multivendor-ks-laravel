@@ -4,25 +4,26 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\SubCategoryController;
-use App\Http\Controllers\Backend\VendorProductController;
-use App\Http\Controllers\User\CheckoutController;
-use App\Http\Controllers\User\StripeController;
-use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\VendorOrderController;
-use App\Http\Controllers\User\AllUserController;
+use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\Backend\VendorProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -286,6 +287,12 @@ Route::controller(CategoryController::class)->group(function(){
             Route::get('/admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
 
 
+        });
+
+        //return order all route
+        Route::controller(ReturnController::class)->group(function(){
+            Route::get('/return/request', 'ReturnRequest')->name('return.request');
+            
         });
 
 

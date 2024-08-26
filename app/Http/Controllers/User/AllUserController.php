@@ -80,5 +80,10 @@ class AllUserController extends Controller
 
     }//end method
 
+    public function ReturnOrderPage(){
+         $orders = Order::where();
+
+
+    }//end method
 
 }

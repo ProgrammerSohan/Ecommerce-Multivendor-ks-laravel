@@ -6,13 +6,13 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">All Return Order</div>
+            <div class="breadcrumb-title pe-3">All Return Order </div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">All Return Order</li>
+                        <li class="breadcrumb-item active" aria-current="page">All Return Order </li>
                     </ol>
                 </nav>
             </div>
@@ -36,7 +36,8 @@
                                 <th>Invoice</th>
                                 <th>Amount</th>
                                 <th>Payment</th>
-                                <th>State</th>
+                                <th>Status</th>
+                                <th>Reason</th>
                                 <th>Action</th>
 
                             </tr>
@@ -50,9 +51,19 @@
                                 <td>{{ $item->invoice_no }}</td>
                                 <td>${{ $item->amount }} </td>
                                 <td>{{ $item->payment_method }}</td>
-                                <td> <span class="badge rounded-pill bg-success">{{ $item->status }}</span></td>
+                                <td>
+                                @if($item->return_order == 1)
+                              
+                             <span class="badge rounded-pill bg-danger">Pending</span>
+                                 @elseif($item->return_order == 2)
+                                 <span class="badge rounded-pill bg-success">Success</span>  
+                                 @endif 
+                            </td>
+                            <td>{{ $item->return_reason}}</td>
                                 <td>
                           <a href="{{ route('admin.order.details',$item->id) }} " class="btn btn-info" title="Details"><i class="fa fa-eye"></i> </a>
+
+                          <a href="{{ route('admin.order.details',$item->id) }} " class="btn btn-danger" title="Details"><i class="fa-solid fa-person-circle-check"></i> </a>                          
                                 </td>
 
                             </tr>
@@ -61,12 +72,13 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Sl</th>
-                                <th>Date </th>
-                                <th>Invoice </th>
-                                <th>Amount </th>
-                                <th>Payment </th>
-                                <th>State </th>
+                            <th>Sl</th>
+                                <th>Date</th>
+                                <th>Invoice</th>
+                                <th>Amount</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Reason</th>
                                 <th>Action</th>
 
                             </tr>
